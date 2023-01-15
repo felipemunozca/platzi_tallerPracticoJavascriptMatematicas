@@ -1,0 +1,12 @@
+En el caso en que cometa un error al escribir el texto de un commit como me ocurrió en "Clase 2 terminada." y en realidad era la "Clase 1 terminada." se puede solucionar utilizando el comando:
+> git commit --amend
+
+En el editor de texto que se abre debo presionar las teclas ESC + I para poder INSERTAR texto o en este caso cambiarlo, el mensaje del commit estará en letras amarillas.
+
+Al terminar de escribir, presiono la tecla ESC. En la parte de abajo del editor, aparecerá una línea en donde debo presionar las teclas SHIFT + Z + Z para guardar y cerrar el editor de texto.
+
+Si intento enviar el cambio realizado a mi repositorio en GitHub se producirá un error ya que habrá un error de referencia en los hash que lleva el proyecto, por lo que primero debo hacer un merge de la rama principal:
+> git merge main
+
+Una vez que se fusionaron los historiales de las ramas, puedo subir el cambio que le hice al commit
+> git push origin main
