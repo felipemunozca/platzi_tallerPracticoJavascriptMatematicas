@@ -136,3 +136,19 @@
 
     console.groupEnd('Círculo');
 
+/***** CLASE 4  *****/
+
+/*** Funcion para calcular la altura de un triangulo isosceles. ***/
+
+    function calcularAlturaTriangulo(lados, base) {
+        //en un triangulo isosceles dos lados son iguales, uno diferente, el cual siempre es la base.
+        if (lados == base) {
+            console.warn('Este no es un triangulo isosceles');
+        } else {
+            //altura (h) = raiz cuadrada (lados ** 2 - (base ** 2) /4)
+            return Math.sqrt((lados ** 2) - ( (base ** 2) ) / 4 );
+        }
+        //en el navegador, en la consola escribir el nombre de la funcion, y luego pasarle dos parametros.
+        //primero probar si funciona el condicional asi que escribire calcularAlturaTriangulo(6, 6) y deberia aparecer el mensaje de error.
+        //luego pruebo con otros parametros, calcularAlturaTriangulo(6, 4) y la altura sera de 5,6568...
+    }
