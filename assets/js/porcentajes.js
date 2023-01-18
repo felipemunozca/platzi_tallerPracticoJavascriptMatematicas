@@ -64,5 +64,54 @@
         const nuevoPrecio = (valorPrecio * (100 - valorDescuento)) / 100;
 
         pResultado.innerText = 'El nuevo precio con descuento es $' + nuevoPrecio;
-        console.log(nuevoPrecio)
+    };
+
+
+/***** Ejercicio clase 8  *****/
+    const inputPrecio2 = document.querySelector('#precio2');
+    const inputCupon = document.querySelector('#cupon');
+    const btn2 = document.querySelector('#calcular2');
+    const pResultado2 = document.querySelector('#resultado2');
+
+    btn2.addEventListener('click', calcularPrecioConCupon);
+
+    function calcularPrecioConCupon() {
+
+        const valorPrecio = Number(inputPrecio2.value);
+        //cupon sera un string (texto) por lo que no se debe leer como numero.
+        const cupon = inputCupon.value;
+        //creo una variable descuento y no le asigno ningun valor de momento, este valor se asignara dependiendo del cupon que escriba el usuario. Debe ser let, ya que el valor va a cambiar segun sea el caso.
+        let descuento;
+
+        if (!valorPrecio || !cupon) {
+            pResultado2.innerText = 'Debe llenar ambos campos del formulario';
+            return;
+        }
+
+        /* if (cupon == 'JuanDC_es_Batman') {
+            descuento = 30;
+        } else if (cupon == 'no_le_digas_a_nadie') {
+            descuento = 20;
+        } else {
+            pResultado2.innerText = 'El cupón no es valido';
+            return;
+        } */
+
+        //Otra forma de comparar diferentes opciones de respuestas es utilizar switch-case en vez de multiples ciclos if-else.
+        switch (cupon) {
+            case 'JuanDC_es_Batman':
+                descuento = 30;
+                break;
+            case 'no_le_digas_a_nadie':
+                descuento = 20;
+                break;
+            default:
+                pResultado2.innerText = 'El cupón no es válido';
+                return;
+        }
+
+        // FORMULA = (P * (100 - D)) /100
+        const nuevoPrecio = (valorPrecio * (100 - descuento)) / 100;
+
+        pResultado2.innerText = 'El nuevo precio con cupón es $' + nuevoPrecio;
     };

@@ -5,6 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matemáticas con JavaScript</title>
+    <style>
+        section {
+            border-width: 1px;
+            border-style: solid;
+            border-color: black;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <!-- Ejercicio Clase 6 -->
@@ -31,12 +40,26 @@
     mismo id del input, y hago clic en el label, de forma automatica se seleccionara el input donde debo escribir. Este punto es
     muy importante al estar realizando formularios con muchos campos que se deben ver tambien en pantallas moviles pequeñas, es una
     forma de ayudar a quienes les cuesta utilizar internet. -->
-    <label for="precio">Precio original del producto: </label>
-    <input id="precio" type="number">
-    <label for="descuento">Descuento del producto: </label>
-    <input id="descuento" type="number">
-    <button id="calcular">Calcular descuento</button>
-    <p id="resultado"></p>
+    <section>
+        <label for="precio">Precio original del producto: </label>
+        <input id="precio" type="number">
+        <label for="descuento">Porcentaje de descuento: </label>
+        <input id="descuento" type="number">
+        <button id="calcular">Calcular descuento</button>
+        <p id="resultado">-</p>
+    </section>
+    
+
+    <!-- Ejercicio Clase 8 -->
+    <section>
+        <label for="precio2">Precio original del producto: </label>
+        <input id="precio2" type="number">
+        <label for="cupon">Cupón de descuento: </label>
+        <input id="cupon" type="text">
+        <button id="calcular2">Calcular descuento</button>
+        <p id="resultado2">-</p>
+    </section>
+    
 
     <script src="./assets/js/porcentajes.js"></script>
 </body>
