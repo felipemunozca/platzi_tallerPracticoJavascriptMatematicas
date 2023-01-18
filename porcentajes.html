@@ -7,6 +7,8 @@
     <title>Matemáticas con JavaScript</title>
 </head>
 <body>
+    <!-- Ejercicio Clase 6 -->
+    <!-- 
     <h1>Taller de Porcentajes con JavaScript</h1>
     <form action="">
         <label for="">Precio</label>
@@ -19,7 +21,22 @@
         <br>
         <label for="">Precio final</label>
         <p id="resultado"></p>
-    </form>
+    </form> 
+    -->
+
+    <!-- Ejercicio Clase 7 -->
+    <h1>Cómo calcular precios con descuentos</h1>
+    
+    <!-- Una forma muy util de aprender a trabajar con label es utilizando la propiedad for="" de esta manera, si coloco el 
+    mismo id del input, y hago clic en el label, de forma automatica se seleccionara el input donde debo escribir. Este punto es
+    muy importante al estar realizando formularios con muchos campos que se deben ver tambien en pantallas moviles pequeñas, es una
+    forma de ayudar a quienes les cuesta utilizar internet. -->
+    <label for="precio">Precio original del producto: </label>
+    <input id="precio" type="number">
+    <label for="descuento">Descuento del producto: </label>
+    <input id="descuento" type="number">
+    <button id="calcular">Calcular descuento</button>
+    <p id="resultado"></p>
 
     <script src="./assets/js/porcentajes.js"></script>
 </body>
