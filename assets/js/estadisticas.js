@@ -21,7 +21,7 @@
 /***** Clase 12 *****/
 
     //crear una funcion que reciba un arreglo con una lista de numeros.
-    function calcularPromedio(arregloNumeros) {
+    function calcularPromedio12(arregloNumeros) {
         //creo una variable con valor cero, a la que le ire sumando el valor de cada numero en el arreglo por cada vuelta que haga el ciclo for.
         let sumaNumeros = 0;
 
@@ -38,7 +38,47 @@
         return promedio;
 
         //En la consola del navegador escribo el nombre de la funcion mas los valores del arreglo entre llaves [], por ejemplo:
-        //calcularPromedio([1,2,3,4,5])
+        //calcularPromedio12([1,2,3,4,5])
         //La respuesta en la consola deberia ser:
         //3
+    }
+
+
+/***** Clase 13 *****/
+
+    //Ahora vamos a replicar la funcion para calcular el promedio, pero esta vez utilizando el método reduce()
+    //reduce() recibe dos valores como parametros. El primero el valor acumulado de cada suma y el segundo el nuevo numero a sumar.
+    //DOCUMENTACION OFICIAL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+
+    function calcularPromedio13(arregloNumeros) {
+
+        function sumarTodosLosElementos(valorAcumulado, nuevoValor) {
+            return valorAcumulado + nuevoValor;
+            //con esta funcion, si envio como arreglo los numeros [1,2,3,4] 
+            //en la primera vuelta de ejecucion, valorAcumulado sera 0 y nuevoValor sera 1
+            //en la segunda vuelta, valorAcumulado sera 1 y nuevoValor sera 2.
+            //en la tercera vuelta, valorAcumulado sera 3 y nuevoValor sera 3. 
+            //en la cuarta vuelta, valorAcumulado sera 6 y nuevoValor sera 4. 
+        }
+
+        const sumaNumeros = arregloNumeros.reduce(sumarTodosLosElementos);
+
+        const promedio = sumaNumeros / arregloNumeros.length;
+        console.log(promedio);
+        return promedio;
+
+        //En la consola del navegador escribo lo siguiente: calcularPromedio13([1,2,3,4]).
+        //La respuesta en la consola sera de 2.5 ya que es la operacion de 10 / 4.
+
+        /**
+         * Tambien puedo escribir la funcion que cree para sumar utilizando arrow function, por ejemplo
+         * 
+        const sumarTodosLosElementos = (valorAcumulado, nuevoValor) => {
+            valorAcumulado + nuevoValor;
+        }
+         * 
+         * una diferencia es que no es necesario escribir return para obtener el valor de operacion, tambien se puede escribir el codigo sin las llaves {} y el codigo se ejecutara de igual forma.
+         * 
+        const ejemplo = (a, b) => a + b;
+         */
     }
