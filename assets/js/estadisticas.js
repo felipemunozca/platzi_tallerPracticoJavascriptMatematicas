@@ -82,3 +82,72 @@
         const ejemplo = (a, b) => a + b;
          */
     }
+
+
+/***** Clase 14 *****/
+
+    //Ahora vamos a crear dos funciones, para determinar si un grupo de numeros es par o impar.
+
+    function esPar(arregloNumeros){
+        //para determinar si un numero es par o impar si puede hacer realizando un calculo simple para determinar el residuo tiene o no valor.
+        //por ejemplo: 10 / 2 = 5 y el residuo seria igual a 0 (par).
+        //por ejemplo: 11 / 2 = 5 y el residuo seria igual a 1 (impar).
+        //Entonces, para llevar esta formula a JS, utilizo el signo % el cual me dara dos posibles: TRUE o FALSE.
+        // % = asignacion de residuo
+
+        //creo una validacion para determinar si el largo de ArregloNumeros es par o no. Si la cantidad de numeros en el arreglo sea impar, la respuesta sera FALSE ya que se cumple la condicion, en caso que la cantidad de numeros sea par, la respuesta sera true.
+        if (arregloNumeros.length % 2) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //otra forma de hacer esta misma funcion. Es utilizando el caracter de negacion ! para indicarle al codigo que el valor que busco que me retorne es contrario al que necesito.
+    function esParSimple(arregloNumeros) {
+        return !(arregloNumeros.length % 2);
+    }
+    //Si en el navegador escribo esParSimple([1,2,3,4]) la respuesta sera TRUE.
+
+    //creo una funcion para saber si un arreglo de numeros es impar, ya que no busco una negacion, escribo el return tal cual. Si en la consola en el navegador escribo esImpar([1,2,3,4,5]) la respuesta en la consola sera "1", en cambio si escribo esImpar([1,2,3,4]) la respuesta sera "0". 
+    function esImpar(arregloNumeros) {
+        return arregloNumeros.length % 2;
+    }
+
+    //Funcion para calcular la mediana.
+    //Con la mediana podre ordenar los numeros de un arreglo y el que este en el medio sera la medio, en caso de ser impar solo sera un valor, en caso de ser par seran dos valores, que se deberan sumar y luego sacar el promedio de esos dos valores.
+    function calcularMediana(arregloNumeros) {
+        const elArregloEsPar = esParSimple(arregloNumeros);
+
+        if (elArregloEsPar) {
+            //si es par, entra en esta seccion de codigo.
+        } else {
+            //si es impar, entra en esta seccion de codigo.
+            //Math.floor() Obtiene el numero entero anterior mas cercano (redondear hacia abajo).
+            //DOCUMENTACION OFICIAL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
+            const indexMitadArregloImpar = Math.floor(arregloNumeros.length / 2);
+            console.log(indexMitadArregloImpar);
+            console.log(arregloNumeros[indexMitadArregloImpar]);
+            //En la consola del navegador escribo medianaImpar([10,20,30,40,50]) y las respuestas son 2 y 30.
+            //las respuestas son correctas ya que, en el arreglo de "5" posiciones, la "2" es la que esta en el media, ya que se empieza a contar desde el cero. Y el valor que esta en la posicion "2" es "30".
+
+            //creo una nueva variable, a la cual le asignare el valor de la posicion en el arreglo que tenga el numero en el medio.
+            const medianaListaImpar = arregloNumeros[indexMitadArregloImpar];
+            return medianaListaImpar;
+        }
+    }
+
+
+
+    /* function calcularMediana(lista){
+        const listaEsPar=esPar(lista);
+        if(listaEsPar){
+
+        }else{
+            const indexMitadListaImpar=Math.floor(lista.length/2);
+            const medianaListaImpar=lista[indexMitadListaImpar];
+            console.log(indexMitadListaImpar);
+            console.log(medianaListaImpar);
+            return medianaListaImpar;
+        }
+    } */
