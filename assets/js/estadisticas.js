@@ -138,16 +138,33 @@
     }
 
 
+/***** Clase 15 *****/
 
-    /* function calcularMediana(lista){
-        const listaEsPar=esPar(lista);
-        if(listaEsPar){
+    //Calcular la mediana de una lista par.
 
-        }else{
-            const indexMitadListaImpar=Math.floor(lista.length/2);
-            const medianaListaImpar=lista[indexMitadListaImpar];
-            console.log(indexMitadListaImpar);
-            console.log(medianaListaImpar);
+    function calcularMediana15(arregloNumeros) {
+        const elArregloEsPar = esParSimple(arregloNumeros);
+
+        if (elArregloEsPar) {
+            //si es par, entra en esta seccion de codigo.
+            //Al ser una cantidad de numeros par, deberan rescatarse dos valores desde el arreglo y luego sacar el promedio de ambos.
+            //para obtener los dos numeros, al primero debo restale -1 para volver una posicion en el arreglo. El segundo lo obtengo de la forma en la que estaba haciendolo hasta ahora.
+            const indexMitadArregloPar1 = (arregloNumeros.length / 2) - 1;
+            const indexMitadArregloPar2 = arregloNumeros.length / 2;
+
+            //para calcular el promedio, voy a reutilizar la funcion de la clase 13, la cual recibe un arreglo de numeros, asi que lo primero que debo hacer es crear un nuevo arreglo.
+            const mitadArreglo = [];
+            mitadArreglo.push(arregloNumeros[indexMitadArregloPar1]);
+            mitadArreglo.push(arregloNumeros[indexMitadArregloPar2]);
+            return calcularPromedio13(mitadArreglo);
+            //En la terminal del navegador, escribo calcularMediana15([10,20,30,40]) y al ejecutar la funcion la respuesta sera 25. Es el resultado de 20+30 / 2.
+
+        } else {
+            const indexMitadArregloImpar = Math.floor(arregloNumeros.length / 2);
+            //console.log(indexMitadArregloImpar);
+            //console.log(arregloNumeros[indexMitadArregloImpar]);
+
+            const medianaListaImpar = arregloNumeros[indexMitadArregloImpar];
             return medianaListaImpar;
         }
-    } */
+    }
