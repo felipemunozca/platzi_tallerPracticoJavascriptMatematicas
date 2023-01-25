@@ -249,3 +249,33 @@
         //la respuesta sera 2500.
         //antes sin ordenar los numeros la respuesta era 50500.
     }
+
+
+/***** Clase 17 *****/
+
+    //Crear una funcion para guardar la cantidad de veces que aparece un elemento en una lista. 
+    //La lista puede ser no solamente de numeros, sino que de palabras tambien.
+    function calcularModa(arreglo) {
+        //creo un objeto vacio, en donde se ira almacenando cada valor que venga dentro del arreglo.
+        const contadorLista = {}
+
+        //creo un ciclo for que va a recorrer todo el arreglo, y guardara en memoria cada elemento que se lea.
+        //utilizando la variable contadorLista, le digo que cree una nueva propiedad la cual tendra el nombre de cada elemento y cada vez que encuentre ese nombre que lo guarde con el valor de 1.
+        for (let i = 0; i < arreglo.length; i++) {
+            const elemento = arreglo[i];
+
+            //creo un condicional para determinar si un valor ya fue leido en el ciclo, que en vez de agregarle un 1, le sume 1.
+            //SI contadorLista[elemento] ya existe que le sume 1. Si no existe, que le asigne el valor de 1.
+            if (contadorLista[elemento]) {
+                contadorLista[elemento] += 1;
+            } else {
+                contadorLista[elemento] = 1;
+            }
+            
+        }
+
+        console.log(contadorLista);
+
+        //Si en la consola del navegador escribo un arreglo con letras y numeros: calcularModa([1,2,3,1,'a',3,'abc','abc']) la respuesta sera:
+        //{1: 2, 2: 1, 3: 2, a: 1, abc: 2}
+    }
