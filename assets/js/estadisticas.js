@@ -168,3 +168,84 @@
             return medianaListaImpar;
         }
     }
+
+
+/***** Clase 16 *****/
+
+    //crear una funcion que recibira un listado de numeros desordenados y la idea es ordenarlos de menor a mayor para poder obtener la mediana real.
+
+    function ordenarArreglo(arregloNumerosDesordenado) {
+        //Se crea una funcion dentro de una funcion, que obtendra dos valores. El primero sera el valor inicial y el segundo el nuevo valor.
+        //Ver imagen 16_metodo_sort.png como referencia.
+        function ordenarArregloConSort(valorInicial, nuevoValor) {
+            //creo diferentes condicionales para todas las convinaciones posibles,
+            //SI el valor inicial es mayor al nuevo valor el orden se mantiene.
+            //SI el valor inicial es igual al nuevo valor, el orden de los numeros se mantiene.
+            //SI el valor inicial es menor al nuevo valor, ambos numeros se invertiran.
+            /* 
+            if (valorInicial > nuevoValor) {
+                return 1;
+            } else if (valorInicial == nuevoValor) {
+                return 0;
+            } else if (valorInicial < nuevoValor) {
+                return -1;
+            } 
+            */
+
+            //Se puede mejorar el codigo, para no tener que utilizar tantos ciclos if, en vez de eso solo es necesario realizar una operacion matematica y rescatar el resultado de esa operacion.
+            return valorInicial - nuevoValor;
+            //Algunos valores de ejemplo:
+            //return 10 - 5 = 5     --> Aqui se cumple valorInicial > nuevoValor  
+            //return 5 - 5 = 0      --> Aqui se cumple valorInicial == nuevoValor
+            //return 5 - 10 = -5    --> Aqui se cumple valorInicial < nuevoValor
+
+        }
+
+        //En la consola escribir ordenarArreglo([1,2,4,5,3]) y la respuesta sera (5) [1,2,3,4,5]
+
+        const lista = arregloNumerosDesordenado.sort(ordenarArregloConSort);
+        //El método sort() ordena los elementos de un arreglo localmente y devuelve el arreglo ordenado.
+        //DOCUMENTACION OFICIAL: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
+        return lista;
+    }
+
+
+    function ordenarArregloSimple(arregloNumerosDesordenado) {
+        //otra forma de desarrollar la funcion para ordenar los numeros de un arreglo, es utilizando el metodo sort() directo sobre el arreglo y luego pasando dos parametros a y b
+        //y mediante una arrow function, le indico que operacion matematica hacer, en este caso restar a - b.
+        //finalmente, retornar la respuesta.
+        const lista = arregloNumerosDesordenado.sort((a, b) => a - b);
+
+        return lista;
+
+        //En la consola del navegador escribo ordenarArregloSimple([1,2,4,5,2]) y la respuesta sera: (5) [1,2,3,4,5]
+    }
+
+    //Ahora ya puedo calcular la mediana de una lista par, puedo reutilizar la funcion ya creada, en este caso la copiare de nuevo para recordar que es lo que estoy haciendo y el orden de los pasos.
+    //le paso como parametro, el supuesto arreglo de numeros desordenado.
+    function calcularMediana16(arregloNumerosDesordenado) {
+        //creo una nueva variable que sera la referencia al arreglo que tenia declarado antes, para no tener que cambiar la estructura de mi codigo.
+        //Ademas, esta nueva variable sera igual a la funcion para ordenar el arreglo que recibira los numeros desordenados para ordenarlos de menor a mayor.
+        const arregloNumeros = ordenarArregloSimple(arregloNumerosDesordenado);
+        const elArregloEsPar = esParSimple(arregloNumeros);
+
+        if (elArregloEsPar) {
+            const indexMitadArregloPar1 = (arregloNumeros.length / 2) - 1;
+            const indexMitadArregloPar2 = arregloNumeros.length / 2;
+
+            const mitadArreglo = [];
+            mitadArreglo.push(arregloNumeros[indexMitadArregloPar1]);
+            mitadArreglo.push(arregloNumeros[indexMitadArregloPar2]);
+            return calcularPromedio13(mitadArreglo);
+        } else {
+            const indexMitadArregloImpar = Math.floor(arregloNumeros.length / 2);
+
+            const medianaListaImpar = arregloNumeros[indexMitadArregloImpar];
+            return medianaListaImpar;
+        }
+
+        //En la consola del navegador escribir: calcularMediana16([2000,1000,100000,3000])
+        //la respuesta sera 2500.
+        //antes sin ordenar los numeros la respuesta era 50500.
+    }
