@@ -279,3 +279,61 @@
         //Si en la consola del navegador escribo un arreglo con letras y numeros: calcularModa([1,2,3,1,'a',3,'abc','abc']) la respuesta sera:
         //{1: 2, 2: 1, 3: 2, a: 1, abc: 2}
     }
+
+/***** Clase 18 *****/
+
+    //18/30 Calculando la moda: arrays a partir de objetos
+    //crear una funcion para identificar que elemento es el que mas veces se ha repetido.
+
+    //Con el javascript modermo existen diferentes metodos que nos ayudan a crear arreglos a partir de objetos.
+    //Object.entries
+    //Object.keys
+    //Object.values
+
+    function calcularModa18(arreglo) {
+        const contadorLista = {}
+
+        for (let i = 0; i < arreglo.length; i++) {
+
+            const elemento = arreglo[i];
+
+            if (contadorLista[elemento]) {
+                contadorLista[elemento] += 1;
+            } else {
+                contadorLista[elemento] = 1;
+            }
+
+        }
+
+        const listaArreglo = Object.entries(contadorLista);
+        console.log(contadorLista, listaArreglo);
+        //al imprimir listaArreglo los valores comenzaran a contarse desde el cero 0. y tendran dos entradas cada uno, la primera es el valor que registra el usuario dentro del arreglo, la segunda es la cantidad de veces que se menciona dicho valor.
+
+        //creo una nueva variable a la cual le asigno la funcion, el arreglo y la posicion, en este caso 1, del valor que quiero obtener.
+        const listaArregloOrdenada = ordenarArregloBidimensional(listaArreglo, 1);
+        //console.log(listaArregloOrdenada);
+        //creo una nueva variable, la cual tendra el valor del elemento que mas veces se repita. 
+        //Ya que la lista se ordena de menor a mayor, lo que debo hacer es obtener el valor del ULTIMO elemento, para ello tomo el largo del arreglo y le resto -1, ese seria el ultimo valor.
+        //Por ejemplo, si mi arreglo tiene 5 numeros, el primero es el 0, el segundo es el 1, el tercero es el 2, el cuarto es el 3, el quinto es el 4. Por eso para llegar a la quinta posicion, le resto 1.
+        const listaNumeroMaximo = listaArregloOrdenada[listaArregloOrdenada.length - 1];
+        //imprimo el valor de moda indicando que desde la variablelistaNumeroMaximo obtenga el valor cero ya que es un arreglo con solo dos valores. Por ejemplo: ['abc', 2]
+        console.log('La moda es: ' + listaNumeroMaximo[0]);
+        
+        //creo una nueva variable a la que le asigno el valor que mas veces se repite en el arreglo y luego lo retorno para finalizar la funcion.
+        const moda = listaNumeroMaximo[0];
+        return moda;
+    }
+
+    //creo una nueva funcion para ordenar un arreglo en dos dimensiones.
+    //Dos diemnsiones se refiere a que dentro del arreglo, existe otro arreglo, para este ejemplo, el primero seran los numeros o palabras que utilicemos, y el segundo, la cantidad de veces que se declaren.
+    //calcularModa18([1,2,abc,1,'abc','abc'])
+    //[ ['1',2],  ['2',1],  ['abc',3] ]
+    function ordenarArregloBidimensional(listaDesordenada, i) {
+        function ordenarArregloConSort(valorAcumulado, nuevoValor) {
+            //Si tengo que rescatar un dato de un arreglo y no se cual es, utilizo una [i] para decir que la posicion sera enviada como paramentro al momento de ejecutar la funcion.
+            return valorAcumulado[i] - nuevoValor[i];
+        }
+        
+        const lista = listaDesordenada.sort(ordenarArregloConSort);
+        return lista;
+    }
