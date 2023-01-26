@@ -1,3 +1,22 @@
+/***** Clase 21 *****/
+    //PlatziMath: clases y métodos estáticos 21/30
+    //Una vez que ya tengo todas mis funciones definidas, puedo crear un objeto en donde englobarlas a todas y luego solo llamarlas utilizando una clase estandar para todas.
+    //Esta es una buena practica cuando tengo muchas funciones y no recuerde los nombres, solo necesito saber el nombre del objeto y ahi me apareceran todas las funciones disponibles.
+    //Este objeto sera igual a una clase, por lo que siempre comienzan con la primera letra en mayuscula, es una conveniencia para quien lea el codigo entienda que es, para este caso sera PlatziMath.
+    const PlatziMath = {};
+
+    //ademas a cada funcion que haya creado en este documento, le debo agregar el nombre de la clase, luego un punto, y despues el nombre de la funcion.
+    PlatziMath.esPar = function esParSimple(arregloNumeros) {
+        return !(arregloNumeros.length % 2);
+    }
+
+    PlatziMath.esImpar = function esImpar(arregloNumeros) {
+        return arregloNumeros.length % 2;
+    }
+
+    //Si en la consola del navegador escribo PlatziMath me aparecen todas las funciones que se asocian a ese nombre.
+
+
 /***** Clase 11 *****/
     /**
      * La moda
