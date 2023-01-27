@@ -193,8 +193,71 @@
             return PlatziMath.calcularMediana(empresas[nombre][year]);
         }
 
-        //En la consola del navegador escribir la funcion: medianaPorEmpresaYear('Industrias Mokepon', 2018) . La respuesta en la consola sera:
-        //La empresa Industrias Mokepon no pago salarios en el año 2018.
-        //Ahora probare con otro año: medianaPorEmpresaYear('Industrias Mokepon', 2022) . La respuesta en la consola sera:
-        //1250
+        /**
+         * En la consola del navegador escribir la funcion: medianaPorEmpresaYear('Industrias Mokepon', 2018) . La respuesta en la consola sera:
+         * La empresa Industrias Mokepon no pago salarios en el año 2018.
+         * Ahora probare con otro año: medianaPorEmpresaYear('Industrias Mokepon', 2022) . La respuesta en la consola sera:
+         * 1250
+         */
     }
+
+
+/***** Clase 27 *****/
+    //Proyección de salarios por empresas 27/30
+
+    //Crear una funcion para proyectar los salarios de una empresa.
+    //recibira como paramatro, el nombre de la empresa.
+    function proyeccionPorEmpresa(nombre) {
+        //El primer paso sera calcular una lista de medianas de cada año.
+        if (!empresas[nombre]) {
+            console.warn(`La empresa ${nombre} no existe`);
+        } else {
+            //como la empresa existe, ahora debo crear un arreglo a partir de un objeto (arreglo bidimensional).
+            //ahora necesito saber el año y la mediana de salarios, pero como no tengo un parametro con el año, los tengo que tratar de obtener todos.
+            //para eso es mas conveniente utilizar la funcion medianaPorEmpresaYear() para los calculos y utilizando "keys" le digo que utilice como llaves, los años del arreglo de cada empresa.
+            const empresaYears = Object.keys(empresas[nombre]);
+
+            //creo una nueva variable, a la que le paso la variable empresaYears y utilizando el metodo map() creo un nuevo arreglo. Y por cada iteracion que haga, recibire un año (year) para enviar a la funcion de medianaPorEmpresaYear().
+            const listaMedianaYears = empresaYears.map((year) => {
+                return medianaPorEmpresaYear(nombre, year);
+            });
+
+            console.log({listaMedianaYears})
+            //en la consola del navegador escribir: proyeccionPorEmpresa('Industrias Mokepon') . La respuesta en la consola sera:
+            /**
+             * listaMedianaYears: Array(4)
+                0: 850
+                1: 1050
+                2: 1250
+                3: 1250
+                length: 4
+             */
+
+            //Ahora que ya tengo la mediana por empresa y por cada año, creo un ciclo for para recorrer cada valor y obtener el valor para ajustar el salario.
+            let porcentajesDeCrecimiento = [];
+            for (let i = 1; i < listaMedianaYears.length; i++) {
+                //ya no necesito la propiedad .salario; ya que estoy recibiendo un arreglo que viene directo con los valores a utilizar.
+                const salarioActual = listaMedianaYears[i];
+                const salarioPasado = listaMedianaYears[i - 1];
+                const crecimiento = salarioActual - salarioPasado;
+                const crecimientoEnPorcentaje = crecimiento / salarioPasado;
+                porcentajesDeCrecimiento.push(crecimientoEnPorcentaje);
+            }
+
+            const medianaPorcentajesDeCrecimiento = PlatziMath.calcularMediana(porcentajesDeCrecimiento);
+
+            const ultimaMedianaDeSalario = listaMedianaYears[listaMedianaYears.length - 1];
+            const aumento = ultimaMedianaDeSalario * medianaPorcentajesDeCrecimiento;
+            console.log(aumento)
+            const nuevaMedianaDeSalario = ultimaMedianaDeSalario + aumento;
+
+            return nuevaMedianaDeSalario;
+
+            /**
+             * en la consola del navegador escribir: proyeccionPorEmpresa('Industrias Mokepon') . La respuesta en la consola sera:
+             * 238.09523809523807   -> el aumento
+             * 1488.095238095238    -> proyeccion de salario para el proximo año.
+             */
+        }
+    }
+    
