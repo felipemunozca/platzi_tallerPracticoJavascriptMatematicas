@@ -43,6 +43,7 @@
         //950
     }
 
+
 /***** Clase 24 *****/
     //Proyección salarial personal 24/30
 
@@ -107,3 +108,69 @@
          * Ese es un valor estimando del nuevo salario deberia tener juanita en su proximo aumento salarial.
         */
     }
+
+
+/***** Clase 25 *****/
+    //Reestructurando información sobre la marcha 25/30
+
+    //Ahora crearemos un analisis empresarial, dependiendo de que personas trabajaron en una empresa determinada.
+
+    //creo un objeto vacio, al cual luego le agregare la informacion de las empresas.
+    const empresas = {};
+
+    //creo un ciclo for of para recorrer el arreglo "salarios" en el archivo salarios.js
+    for (persona of salarios) {
+        //por cada año tengo que buscar la empresa.
+        //dentro tengo que crear otro for of, esta vez para recorrer el arreglo de "trabajos" que tiene cada persona dentro del arreglo "salarios".
+        for (trabajo of persona.trabajos) {
+            //SI dentro de empresas, NO existe una empresa con ese nombre, se agregara dentro del objeto. Si ya existe, la ignora. 
+            //utilizo el simbolo ! para negar.
+            if (!empresas[trabajo.empresa]) {
+                empresas[trabajo.empresa] = {};
+            }
+
+            //SI dentro de empresas, NO existe una empresa con ese nombre, se agregara junto en el año en que se esta leyendo.
+            //POR EJEMPLO: Si trabajamos en la empresa Industrias Mokepon, busco si alguien trabajo en el año 2018. Si no existe el registro, lo voy a crear y lo pasare a un nuevo arreglo.
+            if (!empresas[trabajo.empresa][trabajo.year]) {
+                empresas[trabajo.empresa][trabajo.year] = [];
+            }
+
+            //Finalmente, si ya tengo identificada la empresa y el año de trabajo, utilizo el metodo push para enviar el valor de salario.
+            empresas[trabajo.empresa][trabajo.year].push(trabajo.salario);
+        }
+    }
+
+    //Con el console log (empresas) puedo ver toda la informacion ya ordenada en la consola del navegador.
+    console.log(empresas)
+    /**
+     * La respuesta quedaria asi:
+    Daily Planet: 
+        2018: (4) [1000, 2000, 1500, 3500]
+        2019: (4) [1500, 2500, 2000, 3700]
+        2020: (4) [1000, 2000, 2000, 3800]
+        2021: (4) [1500, 2500, 2500, 4000]
+        2022: (4) [2000, 2500, 2500, 4050]
+        2023: (4) [1500, 2500, 1500, 4050]
+        [[Prototype]]: Object
+    Freelance: 
+        2018: (8) [250, 450, 600, 750, 500, 400, 500, 600]
+        2019: (8) [250, 550, 625, 750, 500, 500, 500, 700]
+        2020: (7) [400, 575, 750, 600, 500, 500, 150]
+        2021: (3) [850, 550, 450]
+        2022: (5) [850, 550, 550, 1550, 800]
+        2023: (4) [850, 650, 350, 850]
+        [[Prototype]]: Object
+    Industrias Mokepon: {2020: Array(1), 2021: Array(2), 2022: Array(2), 2023: Array(2)}
+    Inversionify: {2018: Array(1), 2019: Array(1), 2020: Array(2), 2021: Array(2)}
+    LexCorp: {2018: Array(1), 2019: Array(1), 2020: Array(1), 2021: Array(1), 2022: Array(1), 2023: Array(1)}
+    MarketerosCOL: {2018: Array(2), 2019: Array(3), 2020: Array(3), 2021: Array(4), 2022: Array(4), 2023: Array(5)}
+    Mokepon: {2021: Array(2), 2022: Array(2), 2023: Array(2)}
+    Wayne Enterprises: {2018: Array(2), 2019: Array(2), 2020: Array(2), 2021: Array(2), 2022: Array(2), 2023: Array(2)}
+    [[Prototype]]: Object
+     * 
+     * Ahora puedo revisar la informacion de forma mas visual, y ver que en la empresa "Daily Planet" el año 2018 trabajaron 4 personas distintas y tengo registro de cuales fueron sus salarios.
+     * Otro punto que se puede notar, es en "Freelance" la cantidad de personas va disminuyendo con el pasar de los años.
+     */
+
+
+    //Crearemos una funcion que nos ayude a proyectar salarios, pero esta vez de empresas, todas las personas que han trabajado en la misma empresa tendran un analisis para sus trabajadores.
