@@ -261,3 +261,99 @@
         }
     }
     
+
+/***** Clase 28 *****/
+    //Top 10% de salarios 28/30
+
+    //Analisis general de toda la informacion de salarios.
+
+    function medianaGeneral() {
+        //creo una nueva variable a la cual le pasare los nombres de las personas que estan en arreglo "salarios" para luego enviarlos a la funcion medianaPorPersona().
+        //creare un nuevo arreglo con map() y por cada iteracion quiero obtener el nombre.
+        const nombres = salarios.map(persona => persona.name);
+        console.log(nombres)
+
+        /**
+         * en la consola del navegador escribir: medianaGeneral() . La respuesta en la consola sera:
+         * (20) ['Juanita', 'Alex', 'Nath', 'Julia', 'Jonatan', 'Armando', 'Dilan', 'Zamir', 'Daniela', 'Daniel', 'Rigoberto', 'Alicia', 'Teodoro', 'Bruce Wayne', 'Alfred', 'Clark Kent', 'Lois Lane', 'Jimmy Olsen', 'Perry White', 'Lex Luthor']
+         */
+
+        //creo una nueva variable y a partir de "nombres" utilizo map() para crear un nuevo arreglo
+        const medianaPorCadaNombre = nombres.map(nombre => medianaPorPersona(nombre));
+        console.log(medianaPorCadaNombre);
+
+        /**
+         * en la consola del navegador escribir: medianaGeneral() . La respuesta en la consola sera:
+         * 20) [950, 800, 812.5, 2000, 1000, 800, 850, 800, 525, 500, 725, 1625, 825, 4275, 1750, 1500, 2500, 2000, 3900, 3750]
+         */
+    }
+
+    //La funcion anterior se puede reducir a una sola funcion.
+    function medianaGeneralSimple() {
+        //en vez de utilizar dos metodos map() una para obtener los nombres y otro para obtener las medianas, simplifico el codigo y justo al momento de crear el map() y comenzar con la iteracion le paso la funcion medianaPorPersona() junto con la propiedad name del arreglo.
+        const listaMedianas = salarios.map(persona => medianaPorPersona(persona.name));
+        console.log(listaMedianas);
+
+        //creo una variable para almacenar el calculo dela mediana que hace en PlatziMath. 
+        const mediana = PlatziMath.calcularMediana(listaMedianas);
+
+        return mediana;
+
+        /**
+         * en la consola del navegador escribir: medianaGeneralSimple() . La respuesta en la consola sera:
+         * 975
+         */
+    }
+    
+    //creo una nueva funcion para obtener las medianas mas altas del 10% de personas que mas ganan.
+    function medianaTop10() {
+        //creo un nuevo arreglo con map() con la lista de todas las medianas en numeros.
+        const listaMedianas = salarios.map(
+            persona => medianaPorPersona(persona.name)
+        );
+    
+        //creo una nueva variable que almacenara las medianas del arreglo, pero esta vez ordenadas de menor a mayor.
+        const medianasOrdenadas = PlatziMath.ordenarLista(listaMedianas);
+        //console.log(medianasOrdenadas);
+
+        /**
+         * en la consola del navegador escribir: medianaTop10() . La respuesta en la consola sera:
+         * (20) [500, 525, 725, 800, 800, 800, 812.5, 825, 850, 950, 1000, 1500, 1625, 1750, 2000, 2000, 2500, 3750, 3900, 4275]
+         */
+
+        //Ahora necesito calcular el 10% de medianas mas altas.
+        //la formula en este caso seria: (20 * 10) / 100 = 2
+        //es decir que el 10% de 20 son 2 personas, ahora hay que llevar esto al codigo.
+        
+        //creo una variable que guardara la cantidad de datos que se obtienen como resultado del calculo del 10%.
+        const cantidad = (listaMedianas.length * 10) / 100;
+
+        //Ahora que tengo la cantidad, debo seleccionar a los ultimos elementos (de atras hacia adelante) para obtener los valores mas altos.
+        //El valor de limite en este caso es 18. por lo que las posiciones 19 y 20 serian la respuesta que esta buscando el ejercicio del 10%.
+        const limite = listaMedianas.length - cantidad;
+        console.log(`El limite es: ${limite}`)
+        
+        //el metodo slice() se utiliza para hacer un corte imaginario en un arreglo en donde determine un limite, de atras para adelante.
+        //despues le indico que desde el limite, hasta donde debe llegar el nuevo arreglo. En este caso, que corte hasta la posicion 18, y debe llegar hasta la 20.
+        //DOCUMENTACION OFICIAL: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+        const top10 = medianasOrdenadas.slice(limite, medianasOrdenadas.length);
+        console.log(top10);
+        /**
+         * en la consola del navegador escribir: medianaTop10() . La respuesta en la consola sera:
+         * 2) [3900, 4275]
+                0: 3900
+                1: 4275
+                length: 2
+         */
+    
+        //Finalmente, calculo la mediana del top 10%
+        const medianaTop10 = PlatziMath.calcularMediana(top10);
+        return medianaTop10;
+
+        /**
+         * en la consola del navegador escribir: medianaTop10() . La respuesta en la consola sera:
+         * 4087.5
+         * 
+         * Ese sera el valor de la mediana en el top 10%.
+         */
+    }
