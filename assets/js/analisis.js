@@ -173,4 +173,28 @@
      */
 
 
-    //Crearemos una funcion que nos ayude a proyectar salarios, pero esta vez de empresas, todas las personas que han trabajado en la misma empresa tendran un analisis para sus trabajadores.
+/***** Clase 26 *****/
+    //Salarios empresariales 26/30
+    
+    //Crearemos una funcion que nos ayude a realizar un analisis salaraial, obteniendo la mediana.
+    //creo una funcion que recibira como parametros el nombre de la empresa y el año a analizar.
+    function medianaPorEmpresaYear(nombre, year) {
+        //Si el nombre de la empresa no existe, le envio un mensaje al usuario indicandole el problema.
+        //Utilizo la variable "empresas" que cree en la clase pasada.
+        //Si la empresa no pago salarios en el año indicado (puedo poner un año en el que la empresa aun no existia), le envio un mensaje al usuario con el problema. 
+        //si el nombre y el año existen, puedo calcular la mediana.
+        if (!empresas[nombre]) {
+            console.warn('La empresa no existe');
+            console.warn(`La empresa ${nombre} no existe`);
+        } else if (!empresas[nombre][year]) {
+            console.warn('La empresa no pago salarios en ese año');
+            console.warn(`La empresa ${nombre} no pago salarios en el año ${year}`);
+        } else {
+            return PlatziMath.calcularMediana(empresas[nombre][year]);
+        }
+
+        //En la consola del navegador escribir la funcion: medianaPorEmpresaYear('Industrias Mokepon', 2018) . La respuesta en la consola sera:
+        //La empresa Industrias Mokepon no pago salarios en el año 2018.
+        //Ahora probare con otro año: medianaPorEmpresaYear('Industrias Mokepon', 2022) . La respuesta en la consola sera:
+        //1250
+    }
