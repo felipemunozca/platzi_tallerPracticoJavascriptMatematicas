@@ -1,5 +1,7 @@
-//Listado con la información del curso para realizar el análisis.
-//Es un listado de 20 personas distintas, sus trabajos, en que años, en que empresa y su salario en dolares.
+/**
+ * Listado con la información facilitada por el profesor para realizar el análisis salaria.
+ * Este listado cuenta con los registros de 20 personas distintas, sus trabajos, años de empleo y salarios en dólares.
+ */
 
 const salarios = [];
 salarios.push({
@@ -12,7 +14,7 @@ salarios.push({
         { year: 2022, empresa: 'Industrias Mokepon', salario: 1250, },
         { year: 2023, empresa: 'Industrias Mokepon', salario: 1250, },
         
-        // { year: 2024, salario: 1250, },
+        // { year: 2024, salario: 1250, }, // ejemplo de un nuevo registro.
     ],
 });
 salarios.push({
