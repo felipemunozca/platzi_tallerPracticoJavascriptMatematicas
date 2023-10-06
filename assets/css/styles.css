@@ -96,3 +96,17 @@ body {
     height: 100px;
     color: white;
 }
+
+/*** Estilos pagina about.html ***/
+.main-description {
+    font-size: 18px;
+}
+.main-description p {
+    padding-bottom: 8px;
+}
+.main-description ul {
+    padding-left: 20px;
+}
+.main-description li {
+    padding-bottom: 8px;
+}
