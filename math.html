@@ -4,12 +4,137 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Iconos de bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Matemáticas con JavaScript</title>
 </head>
 <body>
-    <h1>Taller de Matemáticas con JavaScript</h1>
-    <p>Por favor, abre la consola del inspector de elementos.</p>
+    <nav class="navbar">
+        <div class="navbar-title">
+            <h1>Taller de Matemáticas con JavaScript</h1>
+        </div>
+        <div class="navbar-link">
+            <a href="./index.html"><i class="bi bi-house-fill"></i>Inicio</a>
+        </div>
+    </nav>
 
-    <script src="./assets/js/math.js"></script>
+    <main class="main">
+        <h2 class="main-title">Fórmulas básicas para calcular medidas de figuras geométricas</h2>
+        <section class="main-forms">
+            <div class="main-forms__card">
+                <div class="main-forms__text">
+                    <i class="bi bi-square"></i>
+                    <h3>Calcula el perímetro y el área de un cuadrado</h3>
+                    <p>Escribe cuanto mide un lado de tu cuadrado:</p>
+                </div>
+                <form action="" class="main-forms__inputs" id="formCalcularCuadrado">
+                    <div>
+                        <label for="inputCuadrado">Lado del cuadrado</label>
+                        <input type="number" name="inputCuadrado" id="inputCuadrado" placeholder="0">
+                    </div>
+                    <div>
+                        <button type="submit" id="">Calcular</button>
+                    </div>
+                </form>
+                <div class="main-forms__result">
+                    <h4>Resultados</h4>
+                    <p id="resultadoPerimetroCuadrado">El perímetro es de:</p>
+                    <p id="resultadoAreaCuadrado">El área es de:</p>
+                </div>
+            </div>
+            <div class="main-forms__card">
+                <div class="main-forms__text">
+                    <i class="bi bi-triangle-half"></i>
+                    <h3>Calcula el perímetro y el área de un Triangulo</h3>
+                    <p>Escribe cuanto miden los lados, la base y la altura de tu triangulo:</p>
+                </div>
+                <form action="" class="main-forms__inputs" id="formCalcularTriangulo">
+                    <div>
+                        <label for="inputTrianguloLadoUno">Lado Uno del triangulo</label>
+                        <input type="number" name="inputTrianguloLadoUno" id="inputTrianguloLadoUno">
+                    </div>
+                    <div>
+                        <label for="inputTrianguloLadoDos">Lado Dos del triangulo</label>
+                        <input type="number" name="inputTrianguloLadoDos" id="inputTrianguloLadoDos">
+                    </div>
+                    <div>
+                        <label for="inputTrianguloBase">Base del triangulo</label>
+                        <input type="number" name="inputTrianguloBase" id="inputTrianguloBase">
+                    </div>
+                    <div>
+                        <label for="inputTrianguloAltura">Altura del triangulo</label>
+                        <input type="number" name="inputTrianguloAltura" id="inputTrianguloAltura">
+                    </div>
+                    <div>
+                        <button type="submit" id="">Calcular</button>
+                    </div>
+                </form>
+                <div class="main-forms__result">
+                    <h4>Resultados</h4>
+                    <p id="resultadoPerimetroTriangulo">El perímetro es de:</p>
+                    <p id="resultadoAreaTringulo">El área es de:</p>
+                </div>
+            </div>
+            <div class="main-forms__card">
+                <div class="main-forms__text">
+                    <i class="bi bi-circle"></i>
+                    <h3>Calcula el diámetro, el perímetro y el área de un Circulo</h3>
+                    <p>Escribe cuanto mide el radio de tu circulo:</p>
+                </div>
+                <form action="" class="main-forms__inputs" id="formCalcularCirculo">
+                    <div>
+                        <label for="inputCirculo">Radio</label>
+                        <input type="number" name="inputCirculo" id="inputCirculo">
+                    </div>
+                    <div>
+                        <button type="submit" id="">Calcular</button>
+                    </div>
+                </form>
+                <div class="main-forms__result">
+                    <h4>Resultados</h4>
+                    <p id="resultadoDiametroCirculo">El diámetro es de:</p>
+                    <p id="resultadoCircunferenciaCirculo">La circunferencia es de:</p>
+                    <p id="resultadoAreaCirculo">El área es de:</p>
+                </div>
+            </div>
+            <div class="main-forms__card">
+                <div class="main-forms__text">
+                    <i class="bi bi-triangle"></i>
+                    <h3>Calcula la altura de un triángulo isósceles</h3>
+                    <p>Escribe cuanto miden los lados y la altura de tu triangulo:</p>
+                </div>
+                <form action="" class="main-forms__inputs" id="formCalcularIsosceles">
+                    <div>
+                        <label for="inputLadosIsosceles">Lados del triangulo</label>
+                        <input type="number" name="inputLadosIsosceles" id="inputLadosIsosceles">
+                    </div>
+                    <div>
+                        <label for="inputBaseIsosceles">Base del triangulo</label>
+                        <input type="number" name="inputBaseIsosceles" id="inputBaseIsosceles">
+                    </div>
+                    <div>
+                        <button type="submit" id="">Calcular</button>
+                    </div>
+                </form>
+                <div class="main-forms__result">
+                    <h4>Resultados</h4>
+                    <p id="resultadoAlturaIsosceles">La altura es de:</p>
+                </div>
+            </div>
+        </section>
+        <section class="main-comment">
+            <p>Los ejercicios originales se realizaron utilizando la consola del navegador.</p>
+            <p>Por favor, abre la consola del inspector de elementos, para ver algunas soluciones de código.</p>
+        </section>
+        
+    </main>
+
+    <footer class="footer">
+        <h3>Escuela Desarrollo Web</h3>
+        <h4>Ruta: JavaScript a Profundidad</h4>
+    </footer>
+
+    <script src="./assets/js/1_math.js"></script>
 </body>
 </html>
