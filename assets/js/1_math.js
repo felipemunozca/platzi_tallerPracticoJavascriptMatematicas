@@ -208,6 +208,10 @@ formCalcularCuadrado.addEventListener('submit', (e) => {
         inputCuadrado.focus();
         return;
     }
+    if (inputCuadrado.value < 0) {
+        alert('El numero no puede ser negativo.')
+        return;
+    }
 
     calcularMedidasCuadrado();
 });
@@ -235,6 +239,10 @@ formCalcularTriangulo.addEventListener('submit', (e) => {
         inputTrianguloAltura.focus();
         return;
     }
+    if (inputTrianguloLadoUno.value < 0 || inputTrianguloLadoDos.value < 0 || inputTrianguloBase.value < 0 || inputTrianguloAltura.value < 0) {
+        alert('El numero no puede ser negativo.')
+        return;
+    }
 
     calcularMedidasTriangulo();
 });
@@ -245,6 +253,10 @@ formCalcularCirculo.addEventListener('submit', (e) => {
     if (inputCirculo.value == "") {
         alert('Debe agregar el valor del radio del circulo.')
         inputCirculo.focus();
+        return;
+    }
+    if (inputCirculo.value < 0) {
+        alert('El numero no puede ser negativo.')
         return;
     }
 
@@ -264,9 +276,12 @@ formCalcularIsosceles.addEventListener('submit', (e) => {
         inputBaseIsosceles.focus();
         return;
     }
-
     if (inputLadosIsosceles.value == inputBaseIsosceles.value) {
         alert('Estas medidas no son las de un triangulo Isosceles.')
+        return;
+    }
+    if (inputLadosIsosceles.value < 0 || inputBaseIsosceles.value < 0) {
+        alert('El numero no puede ser negativo.')
         return;
     }
 
@@ -274,7 +289,7 @@ formCalcularIsosceles.addEventListener('submit', (e) => {
 });
 
 /*** Funciones ***/
-calcularMedidasCuadrado = () => {
+function calcularMedidasCuadrado() {
     const perimetroCuadrado = parseInt(inputCuadrado.value) * 4;
     const areaCuadrado = parseInt(inputCuadrado.value) * parseInt(inputCuadrado.value);
 
@@ -282,7 +297,7 @@ calcularMedidasCuadrado = () => {
     resultadoAreaCuadrado.innerHTML = `El área es de: <strong>${areaCuadrado}</strong>`;
 }
 
-calcularMedidasTriangulo = () => {
+function calcularMedidasTriangulo() {
     const perimetroTriangulo =  parseInt(inputTrianguloLadoUno.value) + 
                                 parseInt(inputTrianguloLadoDos.value) + 
                                 parseInt(inputTrianguloBase.value);
@@ -292,7 +307,7 @@ calcularMedidasTriangulo = () => {
     resultadoAreaTriangulo.innerHTML = `El área es de: <strong>${areaTriangulo}</strong>`;
 }
 
-calcularMedidasCirculo = () => {
+function calcularMedidasCirculo() {
     const diametroCirculo = parseInt(inputCirculo.value) * 2;
     const circunferenciaCirculo = diametroCirculo * Math.PI;
     const areaCirculo = (Math.pow(parseInt(inputCirculo.value), 2) * Math.PI)
@@ -302,7 +317,7 @@ calcularMedidasCirculo = () => {
     resultadoAreaCirculo.innerHTML = `El área es de: <strong>${areaCirculo.toFixed(3)}</strong>`;
 }
 
-calcularMedidasIsosceles = () => {
+function calcularMedidasIsosceles() {
     const alturaIsosceles = Math.sqrt((parseInt(inputLadosIsosceles.value) ** 2) - 
                                       (parseInt(inputBaseIsosceles.value) ** 2) / 4);
 

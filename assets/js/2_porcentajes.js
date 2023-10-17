@@ -2,8 +2,8 @@
  * CLASE 6: Cómo calcular porcentajes
  * 
  * Se declararan de variables obtenidas desde porcentajes.html
- * Se crea evento al presionar el boton.
- * Se crea la funcion para hacer el calculo utilizando la formula que esta en la carpeta de imagenes: clase_06_formula_descuento.
+ * Se crea evento al presionar el botón.
+ * Se crea la función para hacer el calculo utilizando la formula que esta en la carpeta de img: clase_06_formula_descuento.
  */
 
 /* 
@@ -30,80 +30,91 @@ function calcularDescuento() {
  * CLASE 7: Calculando descuentos con JavaScript
  * 
  * Se declararan de variables obtenidas desde porcentajes.html
- * Se crea evento al presionar el boton "Calcular descuento".
- * Se crea una funcion calcularPrecioConDescuento() para hacer los calculos.
- * Un error que se produjo, es que al obtener los valores de los input, JavaScript los estaba recibiendo como TEXTOS aunque en el formulario se indicaba que serian
- *      numeros, por lo que una forma de corregir esto, es agregando la propiedad NUMBER para indicarle al compilador de JavaScript cual es el tipo de datos correcto 
- *      que se esta recibiendo.
+ * Se crea evento al presionar el botón "Calcular descuento".
+ * Se crea una función calcularPrecioConDescuento() para hacer los cálculos.
+ * Un error que se produjo, es que al obtener los valores de los input, JavaScript los estaba recibiendo como TEXTOS aunque en el 
+ *      formulario se indicaba que serian números, por lo que una forma de corregir esto, es agregando la propiedad NUMBER para 
+ *      indicarle al compilador de JavaScript cual es el tipo de datos correcto que se esta recibiendo.
  * 
- * Se crean validaciones previas, para confirmar que la informacion que se requiere es correcta.
- * Utilizando el simbolo de exclamacion ! JavaScript entiende que esa validacion es negativa. Esto se entiende de esta forma; SI NO hay un valorPrecio o un 
- *      valorDescuento, se mostrara un mensaje al usuario utilizando la etiqueta pResultado.
- * Utilizando "return", se corta la ejecucion del codigo, es decir, que si una de las validaciones no se cumple, se para la ejecucion del codigo y no leera las demas
- *      lineas de codigo de la funcion.
+ * Se crean validaciones previas, para confirmar que la información que se requiere es correcta.
+ * Utilizando el símbolo de exclamación "!" JavaScript entiende que esa validación es NEGATIVA. Esto se entiende de esta forma; 
+ *      SI NO hay un valorPrecio o un valorDescuento, se mostrara un mensaje al usuario utilizando la etiqueta resultado.
+ * Utilizando "return", se corta la ejecución del código, es decir, que si una de las validaciones no se cumple, se para la ejecución 
+ *      del código y no leerá las demás lineas de código de la función.
  * 
- * En el caso en que el usuario escriba un descuento mayor a 100, se le envia un mensaje indicandole que existe un error.
+ * En el caso en que el usuario escriba un descuento mayor a 100, se le envía un mensaje indicándole que existe un error.
  * Finalmente, para ver el resultado, se utiliza innertext para enviar la respuesta directamente al HTML.
  */
-const inputPrecio = document.querySelector('#precio');
-const inputDescuento = document.querySelector('#descuento');
-const btn = document.querySelector('#calcular');
-const pResultado = document.querySelector('#resultado');
+const formUno = document.querySelector('#formUno');
+const formUnoPrecio = document.querySelector('#formUnoPrecio');
+const formUnoPorcentaje = document.querySelector('#formUnoPorcentaje');
+const formUnoResultado = document.querySelector('#formUnoResultado');
 
-btn.addEventListener('click', calcularPrecioConDescuento);
+formUno.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-function calcularPrecioConDescuento() {
-
-    //const valorPrecio = inputPrecio.value;
-    //const valorDescuento = inputDescuento.value;
-    const valorPrecio = Number(inputPrecio.value);
-    const valorDescuento = Number(inputDescuento.value);
-
-    if (!valorPrecio || !valorDescuento) {
-        pResultado.innerText = 'Debe llenar ambos campos del formulario';
+    if (!formUnoPrecio.value || !formUnoPorcentaje.value) {
+        formUnoResultado.innerText = 'Debe llenar ambos campos del formulario';
+        return;
+    }
+    if (formUnoPorcentaje.value > 100) {
+        formUnoResultado.innerText = 'El porcentaje de descuento no puede ser mayor al 100%';
+        return;
+    }
+    if (formUnoPorcentaje.value < 0) {
+        formUnoResultado.innerText = 'El porcentaje de descuento no puede ser un numero negativo';
         return;
     }
 
-    if (valorDescuento > 100) {
-        pResultado.innerText = 'El porcentaje de descuento no puede ser mayor al 100%';
-        return;
-    }
+    calcularPrecioConPorcentaje();
+});
+
+const calcularPrecioConPorcentaje = () => {
     //FORMULA = (P * (100 - D)) /100
-    const nuevoPrecio = (valorPrecio * (100 - valorDescuento)) / 100;
-    pResultado.innerText = 'El nuevo precio con descuento es $' + nuevoPrecio;
+    let nuevoPrecio = (formUnoPrecio.value * (100 - formUnoPorcentaje.value)) / 100;
+    let nuevoPrecioFormateado = Number(nuevoPrecio).toLocaleString("es-CL");
+
+    formUnoResultado.innerHTML = `El nuevo precio con descuento es <strong>$${nuevoPrecioFormateado}</strong>`;
 };
+
 
 
 /**
  * CLASE 8: Cupones de descuento
  * 
- * Se crean dos variables que recibiran los valores desde los input. La primera sera "valorPrecio" la cual sera de tipo NUMBER para definir su valor como un numero. 
- *      La segunda sera "cupon" que sera de tipo string (TEXTO) ya que debe leer una palabra o codigo.
- * Se crea una variable "descuento", a la cual no se le asigna ningun valor de momento. El valor se le asignara dependiendo del cupon que escriba el usuario. 
- *      Debe ser let, ya que el valor cambiara segun sea el caso.
+ * Se crean dos variables que recibirán los valores desde los input. La primera sera "precio" la cual sera de tipo NUMBER 
+ *      para definir su valor como un numero. La segunda sera "cupon" que sera de tipo string (TEXTO) ya que debe leer una palabra 
+ *      o código.
+ * Se crea una variable "descuento", a la cual no se le asigna ningún valor de momento. El valor se le asignara dependiendo del 
+ *      cupón que escriba el usuario. Debe ser let, ya que el valor cambiara según sea el caso.
  * 
  * Se crea un ciclo if-elseif-else con los nombres de los cupones y con el valor de "descuento" que cada uno tiene.
- * Se reempleza el ciclo if-elseif-else por un switch-case, esta opcion es mucho mas util para casos en los que se tengan muchos datos a comparar. Por ejemplo, si
- *      una empresa maneja muchos codigos de descuento dependiendo de los años que tenga un cliente comprando en esa empresa, crear multiples if-else puede ser 
- *      complicado de leer y mucho mas de editar y optimizar el codigo. Por lo que con switch-case es mas facil de entender, editar y mejorar.
+ * Se reemplaza el ciclo if-elseif-else por un switch-case, esta opción es mucho mas util para casos en los que se tengan muchos 
+ *      datos a comparar. Por ejemplo, si una empresa maneja muchos códigos de descuento dependiendo de los años que tenga un cliente 
+ *      comprando en esa empresa, crear multiples if-else puede ser complicado de leer y mucho mas de editar y optimizar el código. 
+ *      Por lo que con switch-case es mas fácil de entender, editar y mejorar.
  */
-const inputPrecio2 = document.querySelector('#precio2');
-const inputCupon = document.querySelector('#cupon');
-const btn2 = document.querySelector('#calcular2');
-const pResultado2 = document.querySelector('#resultado2');
+const formDos = document.querySelector('#formDos');
+const formDosPrecio = document.querySelector('#formDosPrecio');
+const formDosCupon = document.querySelector('#formDosCupon');
+const formDosResultado = document.querySelector('#formDosResultado');
 
-btn2.addEventListener('click', calcularPrecioConCupon);
+formDos.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-function calcularPrecioConCupon() {
-
-    const valorPrecio = Number(inputPrecio2.value);
-    const cupon = inputCupon.value;
-    let descuento;
-
-    if (!valorPrecio || !cupon) {
-        pResultado2.innerText = 'Debe llenar ambos campos del formulario';
+    if (!formDosPrecio.value || !formDosCupon.value) {
+        formDosResultado.innerText = 'Debe llenar ambos campos del formulario';
         return;
     }
+
+    calcularPrecioConSwitch();
+});
+
+const calcularPrecioConSwitch = () => {
+
+    const precio = Number(formDosPrecio.value);
+    const cupon = formDosCupon.value;
+    let descuento;
 
     // if (cupon == 'JuanDC_es_Batman') {
     //     descuento = 30;
@@ -122,33 +133,35 @@ function calcularPrecioConCupon() {
             descuento = 20;
             break;
         default:
-            pResultado2.innerText = 'El cupón no es válido';
+            formDosResultado.innerText = 'El cupón no es válido, el valor del producto es el mismo.';
             return;
     }
 
     // FORMULA = (P * (100 - D)) /100
-    const nuevoPrecio = (valorPrecio * (100 - descuento)) / 100;
-    pResultado2.innerText = 'El nuevo precio con cupón es $' + nuevoPrecio;
+    let nuevoPrecio = (precio * (100 - descuento)) / 100;
+    let nuevoPrecioFormateado = Number(nuevoPrecio).toLocaleString("es-CL");
+    formDosResultado.innerHTML = `El nuevo precio aplicando el cupón es: <strong>$${nuevoPrecioFormateado}</strong>`;
 };
+
 
 
 /**
  * CLASE 9: Método find vs. método filter
  * 
- * Se crea un objeto "objetoCupones", la palabra clave y el valor del descuento. La ventaja de trabajar con objetos, es que se puede colocar tantos codigos como sean 
- *      necesarios. Es muy util a la hora de crear nuevos cupones, editar los existentes o borrar los que ya no usen y la gran ventaja es que la aplicacion seguira 
- *      funcionando bien, ya que no se estara tocando la logica del programa.
+ * Se crea un objeto "objetoCupones", la palabra clave y el valor del descuento. La ventaja de trabajar con objetos, es que se puede 
+ *      colocar tantos códigos como sean necesarios. Es muy util a la hora de crear nuevos cupones, editar los existentes o borrar 
+ *      los que ya no usen y la gran ventaja es que la aplicación seguirá funcionando bien, ya que no se estará tocando la lógica 
+ *      del programa.
  * 
  * Otra forma de trabajar con multiples cupones es utilizando un arreglo. 
- * Se crea un arreglo vacio "arregloCupones". Luego, mediante el metodo .push() se cargaran los "nombre" y "porcentaje" de cada cupon. La gran ventaja de utilizar 
- *      arreglos es que podemos guardar mas informacion, por ejemplo: fecha maxima, descuentos para cierto perfil, limite de cuanto es lo que se puede descontar.
+ * Se crea un arreglo vació "arregloCupones". Luego, mediante el método .push() se cargaran los "nombre" y "porcentaje" de cada 
+ *      cupón. La gran ventaja de utilizar arreglos es que podemos guardar mas información, por ejemplo: fecha maxima, descuentos 
+ *      para cierto perfil, limite de cuanto es lo que se puede descontar.
  */
-const inputPrecio3 = document.querySelector('#precio3');
-const inputCupon3 = document.querySelector('#cupon3');
-const btn3 = document.querySelector('#calcular3');
-const pResultado3 = document.querySelector('#resultado3');
-
-btn3.addEventListener('click', calcularPrecioConCupon);
+const formTres = document.querySelector('#formTres');
+const formTresPrecio = document.querySelector('#formTresPrecio');
+const formTresCupon = document.querySelector('#formTresCupon');
+const formTresResultado = document.querySelector('#formTresResultado');
 
 // const objetoCupones = {
 //     'JuanDC_es_Batman': 30,
@@ -174,40 +187,48 @@ arregloCupones.push({
 /**
  * CLASE 9 [Continuación]
  * 
- * Se crea una funcion para calcular el valor del precio final con el descuento del cupon.
- * Se crea un solo condicional que validara todos los cupones que existen en el "objetoCupones". Se le pasa el texto que escribe el usuario como un parametro, si existe
- *      se rescatara el valor del descuento, en caso contrario, se mostrara un mensaje indicando un mensaje de error. 
+ * Se crea una función para calcular el valor del precio final con el descuento del cupon.
+ * Se crea un solo condicional que validara todos los cupones que existen en el "objetoCupones". Se le pasa el texto que escribe 
+ *      el usuario como un parámetro, si existe se rescatara el valor del descuento, en caso contrario, se mostrara un mensaje 
+ *      indicando un mensaje de error. 
  * 
- * Se crea una nueva funcion para comparar si el texto que escribio el usuario. Utilizando un "return" para buscar si dentro de los "nombre" del arreglo existe un texto
- *      igual a lo que escribio el usuario en el input. La respuesta se leera como un TRUE o FALSE.
+ * Se crea una nueva función para comparar si el texto que escribió el usuario. Utilizando un "return" para buscar si dentro de los 
+ *      "nombre" del arreglo existe un texto igual a lo que escribió el usuario en el input. La respuesta se leerá como un TRUE o FALSE.
  * 
- * Se crea una nueva variable "cuponEnArreglo" la cual es igual al arreglo de cupones junto al método .find() el cual nos devuelve el primer objeto que encuentre que 
- *      cumple con la condicion solicitada. En este caso se envia como argumento la funcion existeCuponEnArreglo().
- * DOCUMENTACION OFICIAL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+ * Se crea una nueva variable "cuponEnArreglo" la cual es igual al arreglo de cupones junto al método .find() el cual devuelve el 
+ *      primer objeto que encuentre que cumple con la condición solicitada. En este caso se envía como argumento la función 
+ *      existeCuponEnArreglo().
  * 
- * Se crea un condicional, si el texto escrito por el usuario en el input existe en el arreglo, el valor de "descuento" sera igual al que este asignado en la propiedad 
- *      porcentaje del objeto.
+ * DOCUMENTACIÓN OFICIAL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+ * 
+ * Se crea un condicional, si el texto escrito por el usuario en el input existe en el arreglo, el valor de "descuento" sera igual 
+ *      al que este asignado en la propiedad porcentaje del objeto.
  */
-function calcularPrecioConCupon() {
+formTres.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-    const valorPrecio = Number(inputPrecio3.value);
-    const textoCupon = inputCupon3.value;
-    let descuento;
-
-    if (!valorPrecio || !textoCupon) {
-        pResultado3.innerText = 'Debe llenar ambos campos del formulario';
+    if (!formTresPrecio.value || !formTresCupon.value) {
+        formTresResultado.innerText = 'Debe llenar ambos campos del formulario';
         return;
     }
 
-    // if (objetoCupones[textoCupon]) {
-    //     descuento = objetoCupones[textoCupon];
+    calcularPrecioConArray();
+});
+
+function calcularPrecioConArray() {
+    const precio = Number(formTresPrecio.value);
+    const cupon = formTresCupon.value;
+    let descuento;
+
+    // if (objetoCupones[cupon]) {
+    //     descuento = objetoCupones[cupon];
     // } else {
     //     pResultado3.innerText = 'El cupón no es válido';
     //     return;
     // }
 
     function existeCuponEnArreglo(elementoArreglo) {
-        return elementoArreglo.nombre == textoCupon;
+        return elementoArreglo.nombre == cupon;
     }
 
     const cuponEnArreglo = arregloCupones.find(existeCuponEnArreglo);
@@ -215,18 +236,18 @@ function calcularPrecioConCupon() {
     if (cuponEnArreglo) {
         descuento = cuponEnArreglo.porcentaje;
     } else {
-        pResultado3.innerText = 'El cupón no es válido';
+        formTresResultado.innerText = 'El cupón ingresado no es válido.';
         return;
     }
 
-    const nuevoPrecio = (valorPrecio * (100 - descuento)) / 100;
-    pResultado3.innerText = 'El nuevo precio con cupón es $' + nuevoPrecio;
-    
+    const nuevoPrecio = (precio * (100 - descuento)) / 100;
+    let nuevoPrecioFormateado = Number(nuevoPrecio).toLocaleString("es-CL");
+    formTresResultado.innerHTML = `El nuevo precio aplicando el cupón es: <strong>$${nuevoPrecioFormateado}</strong>`;
 }
 
 /**
  * NOTA IMPORTANTE:
- * Para comentar grandes secciones de codigo y no ir linea por linea, seleccionar la porcion de codigo y presionar las teclas:
+ * Para comentar grandes secciones de código y no ir linea por linea, seleccionar la porción de código y presionar las teclas:
  * CTRL K + CTRL C para comentar.
- * CTRL K + CTRL U para descomentar.
+ * CTRL K + CTRL U para des-comentar.
  */

@@ -2,10 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap');
 
 :root {
-    --color-nav: #419197;
+/*     --color-nav: #419197;
     --color-fondo: #F5FCCD;
     --color-item: #78D6C6;
     --color-footer: #12486B;
+ */
+    --color-nav: #5F8D4E;
+    --color-fondo: #E5D9B6;
+    --color-item: #A4BE7B;
+    --color-footer: #285430;
 }
 
 * {
@@ -79,14 +84,15 @@ body {
     color: white;
     margin-bottom: 8px;
 }
-.main-cards__item i:hover {
+/* .main-cards__item i:hover {
     transform: scale(1.1);
     transition: 0.5s;
-}
+} */
 .main-cards__item a {
     text-decoration: none;
     text-align: center;
     color: white;
+    padding: 12px;
 }
 .main-cards__item a:hover {
     transform: scale(1.1);
@@ -183,4 +189,32 @@ body {
     border-left: 10px solid var(--color-nav);
     border-radius: 4px;
     margin-top: 25px;
+}
+.main-comment ul {
+    padding-left: 20px;
+}
+.main-comment li {
+    padding-top: 5px;
+}
+
+/*** Media Query para dispositivos móviles. ***/
+@media (max-width: 576px) {
+    
+    .navbar {
+        height: 110px;
+    }
+    .navbar-title {
+        width: 75%;
+    }
+    .navbar-title h1 {
+        width: 95%;
+    }
+    .navbar-link {
+        width: 25%;
+        text-align: end;
+    }
+    .navbar-link a {
+        font-size: 16px;
+        padding: 8px;
+    }
 }
